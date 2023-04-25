@@ -382,9 +382,9 @@ impl Accessor for GcsBackend {
     }
 
     async fn create(&self, path: &str, _: OpCreate) -> Result<RpCreate> {
-        let mut req = self
-            .core
-            .gcs_insert_object_request(path, Some(0), None, AsyncBody::Empty)?;
+        let mut req =
+            self.core
+                .gcs_insert_object_request(path, Some(0), None, None, AsyncBody::Empty)?;
 
         self.core.sign(&mut req).await?;
 
